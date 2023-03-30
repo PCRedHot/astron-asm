@@ -67,10 +67,6 @@ class Orbit:
         f3 = variables[3]
         f4 = - (G * M * variables[2]) / (r ** 3)
         
-        # print(variables)
-        # print(f1, f2, f3, f4)
-        # input()
-
         return np.array([f1, f2, f3, f4])
 
 

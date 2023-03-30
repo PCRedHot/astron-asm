@@ -156,9 +156,9 @@ class Orbit:
 
 
 orbit = Orbit()
-# method = 'leapfrog'
+method = 'leapfrog'
 # method = 'leapfrog_kdk'
-method = 'rk4'
+# method = 'rk4'
 
 # Plot trajectory
 fig_traj = plt.figure()
@@ -174,9 +174,10 @@ ax_ang: plt.Axes = fig_ang.add_subplot()
 fig_energy = plt.figure()
 ax_energy: plt.Axes = fig_energy.add_subplot()
 
+dts = [1e-3, 0.01, 0.05, 0.1]
+# dts = [1e-3]
 
-
-for dt in [0.01, 0.05, 0.1]:
+for dt in dts:
     t, variables = orbit.integrate(dt=dt, n_step=5000, method=method)
     variables = variables.T
 

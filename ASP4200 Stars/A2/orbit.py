@@ -1,17 +1,23 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+
+G = 1
+M = 1
+
 class Orbit:
 
     def integrate(self, dt: float = 0.01, n_step: float = 5000, e: float = 0.7, method='rk4'):
         method = method.lower()
-        if method not in ['rk4', 'leapfrog']:
+        if method not in ['rk4', 'leapfrog', 'leapfrog_kdk']:
             raise Exception('No Such Method')
         
         if method == 'rk4':
             return self.integrate_rk4(dt, n_step, e)
         elif method == 'leapfrog':
             return self.integrate_leapfrog(dt, n_step, e)
+        elif method == 'leapfrog_kdk':
+            return self.integrate_leapfrog_kdk(dt, n_step, e)
         
     
     def integrate_rk4(self, dt: float = 0.01, n_step: float = 5000, e: float = 0.7):
@@ -22,21 +28,21 @@ class Orbit:
         
         # Initial Conditions
         t = 0.0
-        variables = np.array([
-            1 - e,
-            0.0, 
-            0.0,
-            np.sqrt((1+e)/(1-e))
+        variables = np.array([  
+            1 - e,                  # x
+            0.0,                    # y
+            0.0,                    # dx/dt
+            np.sqrt((1+e)/(1-e))    # dy/dt
         ])
         
         result_t.append(t)
         result_variables = np.vstack((result_variables, [variables]))
 
         while t <= t_end:
-            k1 = self.rhs(t, variables)
-            k2 = self.rhs(t + dt / 2, variables + dt * k1 / 2)
-            k3 = self.rhs(t + dt / 2, variables + dt * k2 / 2)
-            k4 = self.rhs(t + dt, variables + dt * k3)
+            k1 = self.rhs_rk4(t, variables)
+            k2 = self.rhs_rk4(t + dt / 2, variables + dt * k1 / 2)
+            k3 = self.rhs_rk4(t + dt / 2, variables + dt * k2 / 2)
+            k4 = self.rhs_rk4(t + dt, variables + dt * k3)
 
             # Increment
             t += dt
@@ -47,43 +53,123 @@ class Orbit:
         return result_t, result_variables
         
     def integrate_leapfrog(self, dt: float = 0.01, n_step: float = 5000, e: float = 0.7):
-        ...
-
+        t_end = dt * n_step
+        
+        result_t = []
+        result_variables = np.zeros((0, 4), dtype=np.float64)
+                        
+        # Initial Conditions
+        t = 0.0
+        variables_xy = np.array([  
+            1 - e,                  # x
+            0.0,                    # y
+        ])
+        variables_dxy_dt = np.array([  
+            0.0,                    # dx/dt
+            np.sqrt((1+e)/(1-e))    # dy/dt
+        ])
+            
+        result_t.append(t)
+        result_variables = np.vstack((result_variables, [np.concatenate((variables_xy, variables_dxy_dt))]))
     
-    def rhs(self, t, variables):
+        while t < t_end:
+            a_i0 = self.rhs_leapfrog(t, variables_xy, e)
+            
+            variables_xy += variables_dxy_dt * dt + a_i0 / 2 * dt**2
+            
+            a_i1 = self.rhs_leapfrog(t, variables_xy, e)
+            
+            variables_dxy_dt += (a_i0 + a_i1) * dt / 2
+            
+            t += dt
+            
+            result_t.append(t)
+            result_variables = np.vstack((result_variables, [np.concatenate((variables_xy, variables_dxy_dt))]))
+        
+        # print(result_variables)
+        return result_t, result_variables
+    
+    def integrate_leapfrog_kdk(self, dt: float = 0.01, n_step: float = 5000, e: float = 0.7):
+        t_end = dt * n_step
+        
+        result_t = []
+        result_variables = np.zeros((0, 4), dtype=np.float64)
+                        
+        # Initial Conditions
+        t = 0.0
+        variables_xy = np.array([  
+            1 - e,                  # x
+            0.0,                    # y
+        ])
+        variables_dxy_dt = np.array([  
+            0.0,                    # dx/dt
+            np.sqrt((1+e)/(1-e))    # dy/dt
+        ])
+        
+        variables_dxy_dt_half = variables_dxy_dt + self.rhs_leapfrog(t, variables_xy, e) * dt / 2
+    
+        result_t.append(t)
+        result_variables = np.vstack((result_variables, [np.concatenate((variables_xy, variables_dxy_dt))]))
+    
+        while t < t_end:
+            # x_i+1 = x_i + v_i+1/2 * dt
+            # y_i+1 = y_i + u_i+1/2 * dt
+            variables_xy += variables_dxy_dt_half * dt
+            
+            a = self.rhs_leapfrog(t, variables_xy, e)
+            variables_dxy_dt = variables_dxy_dt_half + a * dt / 2
+            variables_dxy_dt_half = variables_dxy_dt + a * dt / 2
+            
+            t += dt
+            
+            result_t.append(t)
+            result_variables = np.vstack((result_variables, [np.concatenate((variables_xy, variables_dxy_dt))]))
+        
+        # print(result_variables)
+        return result_t, result_variables
+    
+        
+    def rhs_rk4(self, t, variables):
         
         # u' = v
-        # v' = - (G * M * u) / (u^2 + h^2)^(3/2)   
         # h' = k
+        # v' = - (G * M * u) / (u^2 + h^2)^(3/2)   
         # k' = - (G * M * h) / (u^2 + h^2)^(3/2)
         
-        G = 1
-        M = 1
 
-        r = (variables[0] ** 2 + variables[2] ** 2) ** 0.5
+        r = (variables[0] ** 2 + variables[1] ** 2) ** 0.5
 
-        f1 = variables[1]
-        f2 = - (G * M * variables[0]) / (r ** 3)
-        f3 = variables[3]
-        f4 = - (G * M * variables[2]) / (r ** 3)
+        f1 = variables[2]
+        f2 = variables[3]
+        f3 = - (G * M * variables[0]) / (r ** 3)
+        f4 = - (G * M * variables[1]) / (r ** 3)
         
         return np.array([f1, f2, f3, f4])
+    
+    def rhs_leapfrog(self, t, variables_xy, e):
+        
+        r = np.sqrt(variables_xy[0]**2 + variables_xy[1]**2)
+        a_i = - G * M * variables_xy / r**3
+        
+        return a_i
 
 
 orbit = Orbit()
 
 for dt in [0.01, 0.05, 0.1]:
-    t, variables = orbit.integrate(dt=dt, n_step=5000)
+    t, variables = orbit.integrate(dt=dt, n_step=5000, method='leapfrog_kdk')
+    # t, variables = orbit.integrate(dt=dt, n_step=5000, method='leapfrog')
+    # t, variables = orbit.integrate(dt=dt, n_step=5000, method='rk4')
     variables = variables.T
 
-    plt.scatter(variables[0], variables[2], s=0.3, label=f'dt={dt}')
+    plt.scatter(variables[0], variables[1], s=0.3, label=f'dt={dt}')
 
 
 plt.legend()
 
 # Set limit so we dont see the flying of when dt = 0.1
-plt.ylim((-1, 1))
-plt.xlim((-2, 0.5))
+# plt.ylim((-1, 1))
+# plt.xlim((-2, 0.5))
 plt.xlabel('x')
 plt.ylabel('y')
 

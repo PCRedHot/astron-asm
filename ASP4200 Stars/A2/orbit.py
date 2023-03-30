@@ -159,20 +159,58 @@ orbit = Orbit()
 method = 'leapfrog_kdk'
 # method = 'rk4'
 
+# Plot trajectory
+fig_traj = plt.figure()
+ax_traj: plt.Axes = fig_traj.add_subplot()
+
+
+
+
+# Plot Angular Momentum
+# L = x dy/dt - y dx/dt
+fig_ang = plt.figure()
+ax_ang: plt.Axes = fig_ang.add_subplot()
+
+
+
+# Plot Energy
+# E = 1 / 2 * (dx/dt^2 + dy/dt^2) - 1 / r or 1 / (2 * (dx/dt^2 + dy/dt^2)) - 1 / r      ?? LMAO
+fig_energy = plt.figure()
+ax_energy: plt.Axes = fig_energy.add_subplot()
+
+
+
 for dt in [0.01, 0.05, 0.1]:
     t, variables = orbit.integrate(dt=dt, n_step=5000, method=method)
     variables = variables.T
 
-    plt.scatter(variables[0], variables[1], s=0.3, label=f'dt={dt}')
+    angular_momentum = variables[0] * variables[2] + variables[1] * variables[3]
+    energy = 1 / (np.power(variables[2], 2) + np.power(variables[3], 2)) / 2 - 1 / np.sqrt(np.power(variables[0], 2) + np.power(variables[1], 2))
+    # energy = (np.power(variables[2], 2) + np.power(variables[3], 2)) / 2 - 1 / np.sqrt(np.power(variables[0], 2) + np.power(variables[1], 2))
+
+    ax_traj.scatter(variables[0], variables[1], s=0.3, label=f'dt={dt}')
+    ax_ang.plot(t, angular_momentum, label=f'dt={dt}')
+    ax_energy.plot(t, energy, label=f'dt={dt}')
 
 
-plt.legend()
+
 
 if method == 'rk4':
     # Set limit so we dont see the flying of when dt = 0.1
-    plt.ylim((-1, 1))
-    plt.xlim((-2, 0.5))
-plt.xlabel('x')
-plt.ylabel('y')
+    ax_traj.set_ylim((-1, 1))
+    ax_traj.set_xlim((-2, 0.5))
+    
+ax_traj.legend()
+ax_traj.set_xlabel('x')
+ax_traj.set_ylabel('y')
+
+ax_ang.legend()
+ax_ang.set_xlabel('t')
+ax_ang.set_ylabel('L')
+
+ax_energy.legend()
+ax_energy.set_xlabel('t')
+ax_energy.set_ylabel('E')
+
 
 plt.show()

@@ -155,11 +155,12 @@ class Orbit:
 
 
 orbit = Orbit()
+# method = 'leapfrog'
+method = 'leapfrog_kdk'
+# method = 'rk4'
 
 for dt in [0.01, 0.05, 0.1]:
-    t, variables = orbit.integrate(dt=dt, n_step=5000, method='leapfrog_kdk')
-    # t, variables = orbit.integrate(dt=dt, n_step=5000, method='leapfrog')
-    # t, variables = orbit.integrate(dt=dt, n_step=5000, method='rk4')
+    t, variables = orbit.integrate(dt=dt, n_step=5000, method=method)
     variables = variables.T
 
     plt.scatter(variables[0], variables[1], s=0.3, label=f'dt={dt}')
@@ -167,9 +168,10 @@ for dt in [0.01, 0.05, 0.1]:
 
 plt.legend()
 
-# Set limit so we dont see the flying of when dt = 0.1
-# plt.ylim((-1, 1))
-# plt.xlim((-2, 0.5))
+if method == 'rk4':
+    # Set limit so we dont see the flying of when dt = 0.1
+    plt.ylim((-1, 1))
+    plt.xlim((-2, 0.5))
 plt.xlabel('x')
 plt.ylabel('y')
 

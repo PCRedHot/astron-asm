@@ -48,6 +48,7 @@ class Orbit:
             t += dt
             variables += 1/6 * (k1 + 2*k2 + 2*k3 + k4) * dt
 
+            result_t.append(t)
             result_variables = np.vstack((result_variables, [variables]))
 
         return result_t, result_variables
@@ -156,25 +157,20 @@ class Orbit:
 
 orbit = Orbit()
 # method = 'leapfrog'
-method = 'leapfrog_kdk'
-# method = 'rk4'
+# method = 'leapfrog_kdk'
+method = 'rk4'
 
 # Plot trajectory
 fig_traj = plt.figure()
 ax_traj: plt.Axes = fig_traj.add_subplot()
-
-
-
 
 # Plot Angular Momentum
 # L = x dy/dt - y dx/dt
 fig_ang = plt.figure()
 ax_ang: plt.Axes = fig_ang.add_subplot()
 
-
-
 # Plot Energy
-# E = 1 / 2 * (dx/dt^2 + dy/dt^2) - 1 / r or 1 / (2 * (dx/dt^2 + dy/dt^2)) - 1 / r      ?? LMAO
+# E = (dx/dt^2 + dy/dt^2) / 2  - 1 / r 
 fig_energy = plt.figure()
 ax_energy: plt.Axes = fig_energy.add_subplot()
 
@@ -185,8 +181,7 @@ for dt in [0.01, 0.05, 0.1]:
     variables = variables.T
 
     angular_momentum = variables[0] * variables[2] + variables[1] * variables[3]
-    energy = 1 / (np.power(variables[2], 2) + np.power(variables[3], 2)) / 2 - 1 / np.sqrt(np.power(variables[0], 2) + np.power(variables[1], 2))
-    # energy = (np.power(variables[2], 2) + np.power(variables[3], 2)) / 2 - 1 / np.sqrt(np.power(variables[0], 2) + np.power(variables[1], 2))
+    energy = (np.power(variables[2], 2) + np.power(variables[3], 2)) / 2 - 1 / np.sqrt(np.power(variables[0], 2) + np.power(variables[1], 2))
 
     ax_traj.scatter(variables[0], variables[1], s=0.3, label=f'dt={dt}')
     ax_ang.plot(t, angular_momentum, label=f'dt={dt}')
@@ -195,11 +190,7 @@ for dt in [0.01, 0.05, 0.1]:
 
 
 
-if method == 'rk4':
-    # Set limit so we dont see the flying of when dt = 0.1
-    ax_traj.set_ylim((-1, 1))
-    ax_traj.set_xlim((-2, 0.5))
-    
+
 ax_traj.legend()
 ax_traj.set_xlabel('x')
 ax_traj.set_ylabel('y')
@@ -211,6 +202,18 @@ ax_ang.set_ylabel('L')
 ax_energy.legend()
 ax_energy.set_xlabel('t')
 ax_energy.set_ylabel('E')
+
+if method == 'rk4':
+    # Set limit so we dont see the flying of when dt = 0.1
+    ax_traj.set_ylim((-1, 1))
+    ax_traj.set_xlim((-2, 0.5))
+    
+    ax_ang.set_ylim((-1, 1))
+    ax_ang.set_xlim((0, 300))
+    
+    ax_energy.set_ylim((-0.55, -0.495))
+    ax_energy.set_xlim((0, 300))
+    
 
 
 plt.show()

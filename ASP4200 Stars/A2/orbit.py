@@ -156,9 +156,9 @@ class Orbit:
 
 
 orbit = Orbit()
-method = 'leapfrog'
+# method = 'leapfrog'
 # method = 'leapfrog_kdk'
-# method = 'rk4'
+method = 'rk4'
 
 # Plot trajectory
 fig_traj = plt.figure()

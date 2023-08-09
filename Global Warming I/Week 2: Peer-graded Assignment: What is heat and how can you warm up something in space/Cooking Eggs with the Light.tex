@@ -1,0 +1,669 @@
+\documentclass{article}
+
+% If you're new to LaTeX, here's some short tutorials:
+% https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes
+% https://en.wikibooks.org/wiki/LaTeX/Basics
+
+% Formatting
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage[titletoc,title]{appendix}
+
+% Math
+% https://www.overleaf.com/learn/latex/Mathematical_expressions
+% https://en.wikibooks.org/wiki/LaTeX/Mathematics
+\usepackage{amsmath,amsfonts,amssymb,mathtools}
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+
+% Images
+% https://www.overleaf.com/learn/latex/Inserting_Images
+% https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions
+\usepackage{graphicx,float}
+\usepackage{braket}
+
+% Tables
+% https://www.overleaf.com/learn/latex/Tables
+% https://en.wikibooks.org/wiki/LaTeX/Tables
+
+% Algorithms
+% https://www.overleaf.com/learn/latex/algorithms
+% https://en.wikibooks.org/wiki/LaTeX/Algorithms
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{algorithmic}
+
+\setlength{\parskip}{1em}
+\renewcommand{\baselinestretch}{1.3}
+
+% Title content
+\title{Global Warming I: The Science and Modeling of Climate Change\\Peer-graded Assignment: What is heat and how can you warm up something in space?}
+\author{CHOI Chong Hing}
+\date{Sep 27, 2021}
+
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\begin{document}
+
+\maketitle
+
+\section{Question 1}
+\subsection{}
+Suppose $\Ket{\Psi}$ is a product state, then we have
+\begin{flalign*}
+\Ket{\Psi} &= \frac{1}{\sqrt{3}} (\Ket{0}\otimes\Ket{0} + \Ket{0}\otimes\Ket{1} + \Ket{1}\otimes\Ket{0})\\
+& = \Ket{\alpha} \otimes \Ket{\beta}\\
+& = (\alpha_0\Ket{0} + \alpha_1\Ket{1}) \otimes (\beta_0\Ket{0} + \beta_1\Ket{1})
+\end{flalign*}
+This means that the following equations have to be satisfied:
+\[
+\left \{ \begin{array}{l}
+\alpha_0\beta_0 = \frac{1}{\sqrt{3}}\\
+\alpha_0\beta_1 = \frac{1}{\sqrt{3}}\\
+\alpha_1\beta_0 = \frac{1}{\sqrt{3}}\\
+\alpha_1\beta_1 = 0
+\end{array}\right.
+\]
+We can see that it is impossible for satisfying all the equations. Equation 4 suggests that either $\alpha_1$ or $\beta_1$ is 0, while equation 2 and 3 requires both of them not equal to 0. We see a contradiction. Thus, $\Ket{\Psi}$ is an entangled state.
+
+\pagebreak
+\subsection{}
+Suppose $\Ket{\Psi}$ is a product state, then we have
+\begin{flalign*}
+\Ket{\Psi} &= \frac{1}{3} (\sqrt{2}\Ket{0}\otimes\Ket{0} + i\Ket{0}\otimes\Ket{1} + 2\Ket{1}\otimes\Ket{0} + i\sqrt{2}\Ket{1}\otimes\Ket{1})\\
+& = \Ket{\alpha} \otimes \Ket{\beta}\\
+& = (\alpha_0\Ket{0} + \alpha_1\Ket{1}) \otimes (\beta_0\Ket{0} + \beta_1\Ket{1})
+\end{flalign*}
+This means that the following equations have to be satisfied:
+\[
+\left \{ \begin{array}{l}
+\alpha_0\beta_0 = \frac{\sqrt{2}}{3}\\
+\alpha_0\beta_1 = \frac{i}{3}\\
+\alpha_1\beta_0 = \frac{2}{3}\\
+\alpha_1\beta_1 = \frac{i\sqrt{2}}{3}
+\end{array}\right.
+\]
+Solving the equations, we have
+\[
+\left \{ \begin{array}{l}
+\alpha_0 = \frac{1}{\sqrt{3}} \\
+\alpha_1 = \frac{\sqrt{2}}{\sqrt{3}} \\
+\beta_0 = \frac{\sqrt{2}}{\sqrt{3}} \\
+\beta_1 = \frac{i}{\sqrt{3}}
+\end{array}\right.
+\]
+Hence, $\Ket{\Psi}$ is a product state.
+
+\subsection{}
+Suppose $\Ket{\Psi}$ is a product state, then we have
+\begin{flalign*}
+\Ket{\Psi} &= \frac{1}{2\sqrt{2}} ((1+i)\Ket{0}\otimes\Ket{0} + (1-i)\Ket{0}\otimes\Ket{1} + (1-i)\Ket{1}\otimes\Ket{0} + (1+i)\Ket{1}\otimes\Ket{1})\\
+& = \Ket{\alpha} \otimes \Ket{\beta}\\
+& = (\alpha_0\Ket{0} + \alpha_1\Ket{1}) \otimes (\beta_0\Ket{0} + \beta_1\Ket{1})
+\end{flalign*}
+This means that the following equations have to be satisfied:
+\[
+\left \{ \begin{array}{l}
+\alpha_0\beta_0 = \frac{1+i}{2\sqrt{2}}\\
+\alpha_0\beta_1 = \frac{1-i}{2\sqrt{2}}\\
+\alpha_1\beta_0 = \frac{1-i}{2\sqrt{2}}\\
+\alpha_1\beta_1 = \frac{1+i}{2\sqrt{2}}
+\end{array}\right.
+\]
+Dividing equation 1 by equation 2, and equation 3 by equation 4, we have
+\[
+\left \{ \begin{array}{l}
+\frac{\beta_0}{\beta_1} = \frac{1+i}{1-i}\\
+\frac{\beta_0}{\beta_1} = \frac{1-i}{1+i}
+\end{array}\right.
+\]
+These euqations could not be satisfied at the same time. Thus, $\Ket{\Psi}$ is an entangled state.
+
+\pagebreak
+\section{Question 2}
+\subsection{}
+\begin{flalign*}
+U_t U_t^\dagger & = \left[\cos\left(\frac{t}2\right) I \otimes I - i \sin\left(\frac{t}2\right)\text{SWAP} \right]\left[\cos\left(\frac{t}2\right) I \otimes I - i \sin\left(\frac{t}2\right)\text{SWAP} \right]^\dagger\\
+& = \left[\cos\left(\frac{t}2\right) I \otimes I - i \sin\left(\frac{t}2\right)\text{SWAP} \right]\left[\cos\left(\frac{t}2\right) I \otimes I + i \sin\left(\frac{t}2\right)\text{SWAP}^\dagger \right]\\
+& = \cos^2\left(\frac{t}2\right) I \otimes I + \sin^2\left(\frac{t}2\right) \text{SWAP } \text{SWAP}^\dagger\\
+& = \left(\cos^2\left(\frac{t}2\right) + \sin^2\left(\frac{t}2\right)\right) I\otimes I\\
+& = I\otimes I\\
+\end{flalign*}
+Therefore, $U_t$ is a unitary gate for every $t \in \mathbb{R}$.
+
+\subsection{}
+\begin{flalign*}
+U_{\pi/2} (\Ket{0} \otimes \Ket{1}) & = \left[\cos\left(\frac{\pi}4\right) I \otimes I - i \sin\left(\frac{\pi}4\right) \text{SWAP} \right] (\Ket{0} \otimes \Ket{1}) \\
+& = \left(\cos\left(\frac{\pi}4\right) I \otimes I \right)(\Ket{0} \otimes \Ket{1}) - i\sin\left(\frac{\pi}4\right) (\Ket{1} \otimes \Ket{0})\\
+& = \frac{1}{\sqrt{2}}(\Ket{0} \otimes \Ket{1}) - \frac{i}{\sqrt{2}} (\Ket{1} \otimes \Ket{0})\\
+\end{flalign*}
+
+\subsection{}
+For both Alice and Bob measure in $\{\Ket{0}, \Ket{1}\}$, we have four different outcomes: 00, 01, 10, 11. Denote probability for outcome $m$ by $p_m$, then we have
+\begin{flalign*}
+p_{00} & = \left| ( \Bra{0} \otimes \Bra{0} )U_{\pi/2} (\Ket{0} \otimes \Ket{1})\right| ^2  \\
+& = \left| ( \Bra{0} \otimes \Bra{0} )\left( \frac{1}{\sqrt{2}}(\Ket{0} \otimes \Ket{1}) - \frac{i}{\sqrt{2}} (\Ket{1} \otimes \Ket{0})\right) \right| ^2\\
+& = \left| \frac{1}{\sqrt{2}} ( \Bra{0} \otimes \Bra{0} )(\Ket{0} \otimes \Ket{1}) - \frac{i}{\sqrt{2}} ( \Bra{0} \otimes \Bra{0} )(\Ket{1} \otimes \Ket{0}) \right| ^2\\
+& = \left| \frac{1}{\sqrt{2}} \Braket{0|0} \Braket{0|1}  - \frac{i}{\sqrt{2}} \Braket{0|1} \Braket{0|0} \right| ^2\\
+& = 0
+\end{flalign*}
+
+\begin{flalign*}
+p_{01} & = \left| ( \Bra{0} \otimes \Bra{1} )U_{\pi/2} (\Ket{0} \otimes \Ket{1})\right| ^2  \\
+& = \left| ( \Bra{0} \otimes \Bra{1} )\left( \frac{1}{\sqrt{2}}(\Ket{0} \otimes \Ket{1}) - \frac{i}{\sqrt{2}} (\Ket{1} \otimes \Ket{0})\right) \right| ^2\\
+& = \left| \frac{1}{\sqrt{2}} ( \Bra{0} \otimes \Bra{1} )(\Ket{0} \otimes \Ket{1}) - \frac{i}{\sqrt{2}} ( \Bra{0} \otimes \Bra{1} )(\Ket{1} \otimes \Ket{0}) \right| ^2\\
+& = \left| \frac{1}{\sqrt{2}} \Braket{0|0} \Braket{1|1}  - \frac{i}{\sqrt{2}} \Braket{0|1} \Braket{1|0}\right| ^2\\
+& = \frac{1}2
+\end{flalign*}
+
+\begin{flalign*}
+p_{10} & = \left| ( \Bra{1} \otimes \Bra{0} )U_{\pi/2} (\Ket{0} \otimes \Ket{1})\right| ^2  \\
+& = \left| ( \Bra{1} \otimes \Bra{0} )\left( \frac{1}{\sqrt{2}}(\Ket{0} \otimes \Ket{1}) - \frac{i}{\sqrt{2}} (\Ket{1} \otimes \Ket{0})\right) \right| ^2\\
+& = \left| \frac{1}{\sqrt{2}} ( \Bra{1} \otimes \Bra{0} )(\Ket{0} \otimes \Ket{1}) - \frac{i}{\sqrt{2}} ( \Bra{1} \otimes \Bra{0} )(\Ket{1} \otimes \Ket{0}) \right| ^2\\
+& = \left| \frac{1}{\sqrt{2}} \Braket{1|0} \Braket{0|1}  - \frac{i}{\sqrt{2}} \Braket{1|1} \Braket{0|0}\right| ^2\\
+& = \frac{1}2
+\end{flalign*}
+
+\begin{flalign*}
+p_{11} & = \left| ( \Bra{1} \otimes \Bra{1} )U_{\pi/2} (\Ket{0} \otimes \Ket{1})\right| ^2  \\
+& = \left| ( \Bra{1} \otimes \Bra{1} )\left( \frac{1}{\sqrt{2}}(\Ket{0} \otimes \Ket{1}) - \frac{i}{\sqrt{2}} (\Ket{1} \otimes \Ket{0})\right) \right| ^2\\
+& = \left| \frac{1}{\sqrt{2}} ( \Bra{1} \otimes \Bra{1} )(\Ket{0} \otimes \Ket{1}) - \frac{i}{\sqrt{2}} ( \Bra{1} \otimes \Bra{1} )(\Ket{1} \otimes \Ket{0}) \right| ^2\\
+& = \left| \frac{1}{\sqrt{2}} \Braket{1|0} \Braket{1|1}  - \frac{i}{\sqrt{2}} \Braket{1|1} \Braket{1|0} \right| ^2\\
+& = 0
+\end{flalign*}
+
+\pagebreak
+\subsection{}
+After applying $U$, we have
+\begin{flalign*}
+U(\Ket{0} \otimes \Ket{1}) & = \left[\cos\left(\frac{t}2\right) I \otimes I - i \sin\left(\frac{t}2\right)\text{SWAP} \right](\Ket{0} \otimes \Ket{1})\\
+& = \cos\left(\frac{t}2\right) (\Ket{0} \otimes \Ket{1}) - i \sin\left(\frac{t}2\right)(\Ket{1} \otimes \Ket{0})\\
+\end{flalign*}
+Measuring in the basis $\{\Ket{nm}\} \text{ for } n, m \in \{0, 1\}$, we have the probabilities
+\begin{flalign*}
+p_{00} & = \left| ( \Bra{0} \otimes \Bra{0} )U(\Ket{0} \otimes \Ket{1})\right| ^2  \\
+& = \left| ( \Bra{0} \otimes \Bra{0} ) \left[\cos\left(\frac{t}2\right) (\Ket{0} \otimes \Ket{1}) - i \sin\left(\frac{t}2\right)(\Ket{1} \otimes \Ket{0})\right] \right| ^2  \\
+& = 0
+\end{flalign*}
+
+\begin{flalign*}
+p_{01} & = \left| ( \Bra{0} \otimes \Bra{1} )U_{\pi/2} (\Ket{0} \otimes \Ket{1})\right| ^2  \\
+& = \left| ( \Bra{0} \otimes \Bra{1} ) \left[\cos\left(\frac{t}2\right) (\Ket{0} \otimes \Ket{1}) - i \sin\left(\frac{t}2\right)(\Ket{1} \otimes \Ket{0})\right]  \right| ^2\\
+& = \left| \cos\left(\frac{t}2\right) \right|^2\\
+& = \cos^2\left(\frac{t}2\right) 
+\end{flalign*}
+
+\begin{flalign*}
+p_{10} & = \left| ( \Bra{1} \otimes \Bra{0} )U(\Ket{0} \otimes \Ket{1})\right| ^2  \\
+& = \left| ( \Bra{1} \otimes \Bra{0} ) \left[\cos\left(\frac{t}2\right) (\Ket{0} \otimes \Ket{1}) - i \sin\left(\frac{t}2\right)(\Ket{1} \otimes \Ket{0})\right] \right| ^2\\
+& = \left|  - i \sin\left(\frac{t}2\right) \right|^2\\
+& = \sin^2\left(\frac{t}2\right) 
+\end{flalign*}
+
+\begin{flalign*}
+p_{11} & = \left| ( \Bra{1} \otimes \Bra{1} )U(\Ket{0} \otimes \Ket{1})\right| ^2  \\
+& = \left| ( \Bra{1} \otimes \Bra{1} ) \left[\cos\left(\frac{t}2\right) (\Ket{0} \otimes \Ket{1}) - i \sin\left(\frac{t}2\right)(\Ket{1} \otimes \Ket{0})\right] \right| ^2  \\
+& = 0
+\end{flalign*}
+
+Therefore, the state of the two qubits could only be $\Ket{0} \otimes \Ket{1}$ or $\Ket{1} \otimes \Ket{0}$. Applying $U$ to both states, we have
+\begin{flalign*}
+U(\Ket{0} \otimes \Ket{1}) & = \left[\cos\left(\frac{t}2\right) I \otimes I - i \sin\left(\frac{t}2\right)\text{SWAP} \right](\Ket{0} \otimes \Ket{1})\\
+& = \cos\left(\frac{t}2\right) (\Ket{0} \otimes \Ket{1}) - i \sin\left(\frac{t}2\right)(\Ket{1} \otimes \Ket{0})\\
+\end{flalign*}
+and
+\begin{flalign*}
+U(\Ket{1} \otimes \Ket{0}) & = \left[\cos\left(\frac{t}2\right) I \otimes I - i \sin\left(\frac{t}2\right)\text{SWAP} \right](\Ket{1} \otimes \Ket{0})\\
+& = \cos\left(\frac{t}2\right) (\Ket{1} \otimes \Ket{0}) - i \sin\left(\frac{t}2\right)(\Ket{0} \otimes \Ket{1})\\
+\end{flalign*}
+
+\subsection{}
+After applying $U$, we have
+\begin{flalign*}
+U(\Ket{0} \otimes \Ket{1}) & = \left[\cos\left(\frac{t}2\right) I \otimes I - i \sin\left(\frac{t}2\right)\text{SWAP} \right](\Ket{0} \otimes \Ket{1})\\
+& = \cos\left(\frac{t}2\right) (\Ket{0} \otimes \Ket{1}) - i \sin\left(\frac{t}2\right)(\Ket{1} \otimes \Ket{0})\\
+\end{flalign*}
+Applying $U$ again, we have
+\begin{flalign*}
+UU(\Ket{0} \otimes \Ket{1}) & = \left[\cos\left(\frac{t}2\right) I \otimes I - i \sin\left(\frac{t}2\right)\text{SWAP} \right]^2(\Ket{0} \otimes \Ket{1})\\
+& =  \left[\cos\left(\frac{t}2\right) I \otimes I - i \sin\left(\frac{t}2\right)\text{SWAP} \right]\left[\cos\left(\frac{t}2\right) (\Ket{0} \otimes \Ket{1}) - i \sin\left(\frac{t}2\right)(\Ket{1} \otimes \Ket{0})\right]\\
+& = \cos^2\left(\frac{t}2\right)(\Ket{0} \otimes \Ket{1})  - 2 i \sin\left(\frac{t}2\right) \cos\left(\frac{t}2\right)(\Ket{1} \otimes \Ket{0}) - \sin^2\left(\frac{t}2\right) (\Ket{0} \otimes \Ket{1})\\
+& = \left[\cos^2\left(\frac{t}2\right) - \sin^2\left(\frac{t}2\right)\right](\Ket{0} \otimes \Ket{1}) - 2 i \sin\left(\frac{t}2\right) \cos\left(\frac{t}2\right)(\Ket{1} \otimes \Ket{0})\\
+& = \left[\frac{1+\cos t - 1 + \cos t}2\right](\Ket{0} \otimes \Ket{1}) - i \sin t(\Ket{1} \otimes \Ket{0})\\
+& = \cos t (\Ket{0} \otimes \Ket{1}) - i \sin t (\Ket{1} \otimes \Ket{0})\\
+\end{flalign*}
+
+\pagebreak
+\section{Question 3}
+\subsection{}
+Alice measures qubit A in the $\{\Ket{0} \otimes \Ket{1}\}$ basis.\\
+For the outcome of qubit A is $\Ket{0}$, the state of Bob's system is
+\begin{flalign*}
+\frac{(\Bra{0} \otimes I_B) \Ket{\Psi}}{\left\|(\Bra{0} \otimes I_B) \Ket{\Psi}\right\|} & = \frac{\frac{1}{\sqrt{2}} (\Braket{0|0} \Ket{1})}{\left\| \frac{1}{\sqrt{2}} (\Braket{0|0} \Ket{1}) \right\|}\\
+& = \Ket{1}
+\end{flalign*}
+For the outcome of qubit A is $\Ket{1}$, the state of Bob's system is
+\begin{flalign*}
+\frac{(\Bra{1} \otimes I_B) \Ket{\Psi}}{\left\|(\Bra{1} \otimes I_B) \Ket{\Psi}\right\|} & = \frac{\frac{1}{\sqrt{2}} (-i\Braket{1|1} \Ket{0})}{\left\| \frac{1}{\sqrt{2}} (-i\Braket{1|1} \Ket{0}) \right\|}\\
+& = \Ket{0}
+\end{flalign*}
+
+\subsection{}
+Bob measures qubit B in the $\{\Ket{+} \otimes \Ket{-}\}$ basis.\\
+For the outcome of qubit B is $\Ket{+}$, the state of Alice's system is
+\begin{flalign*}
+\frac{(I_A \otimes \Bra{+}) \Ket{\Psi}}{\left\|(I_A \otimes \Bra{+}) \Ket{\Psi}\right\|} 
+& = \frac{\frac{1}{2} [I_A \otimes (\Bra{0} + \Bra{1})] (\Ket{0} \otimes \Ket{1} - i \Ket{1} \otimes \Ket{0})}
+{\left\| \frac{1}{2} [I_A \otimes (\Bra{0} + \Bra{1})] (\Ket{0} \otimes \Ket{1} - i \Ket{1} \otimes \Ket{0})\right\|}\\
+& = \frac{ -i\Ket{1} + \Ket{0}}
+{\left\| -i\Ket{1} + \Ket{0} \right\|}\\
+& = \frac{\Ket{0} - i\Ket{1}}{\sqrt{2}}\\
+\end{flalign*}
+For the outcome of qubit B is $\Ket{-}$, the state of Alice's system is
+\begin{flalign*}
+\frac{(I_A \otimes \Bra{-}) \Ket{\Psi}}{\left\|(I_A \otimes \Bra{-}) \Ket{\Psi}\right\|} 
+& = \frac{\frac{1}{2} [I_A \otimes (\Bra{0} - \Bra{1})] (\Ket{0} \otimes \Ket{1} - i \Ket{1} \otimes \Ket{0})}
+{\left\| \frac{1}{2} [I_A \otimes (\Bra{0} - \Bra{1})] (\Ket{0} \otimes \Ket{1} - i \Ket{1} \otimes \Ket{0})\right\|}\\
+& = \frac{ -i\Ket{1} - \Ket{0}}
+{\left\| -i\Ket{1} - \Ket{0} \right\|}\\
+& = \frac{-\Ket{0} - i\Ket{1}}{\sqrt{2}}\\
+\end{flalign*}
+
+\subsection{}
+Denote probability of outcome $nm \text{ for } n \in \{0, 1\}, m \in \{+, -\}$ by $p_{nm}$, we have
+\begin{flalign*}
+p_{0+} & = \left|
+(\Bra{0} \otimes \Bra{+}) \Ket{\Psi}
+\right|^2\\
+& = \frac{1}{4} \left|
+(\Bra{0} \otimes \Bra{0} + \Bra{0} \otimes \Bra{1}) (\Ket{0} \otimes \Ket{1} - i \Ket{1} \otimes \ket{0})
+\right|^2\\
+& = \frac{1}4
+\end{flalign*}
+\begin{flalign*}
+p_{0-} & = \left|
+(\Bra{0} \otimes \Bra{-}) \Ket{\Psi}
+\right|^2\\
+& = \frac{1}{4} \left|
+(\Bra{0} \otimes \Bra{0} - \Bra{0} \otimes \Bra{1}) (\Ket{0} \otimes \Ket{1} - i \Ket{1} \otimes \ket{0})
+\right|^2\\
+& = \frac{1}4
+\end{flalign*}
+\begin{flalign*}
+p_{1+} & = \left|
+(\Bra{1} \otimes \Bra{+}) \Ket{\Psi}
+\right|^2\\
+& = \frac{1}{4} \left|
+(\Bra{1} \otimes \Bra{0} + \Bra{1} \otimes \Bra{1}) (\Ket{0} \otimes \Ket{1} - i \Ket{1} \otimes \ket{0})
+\right|^2\\
+& = \frac{1}4
+\end{flalign*}
+\begin{flalign*}
+p_{1-} & = \left|
+(\Bra{1} \otimes \Bra{-}) \Ket{\Psi}
+\right|^2\\
+& = \frac{1}{4} \left|
+(\Bra{1} \otimes \Bra{0} - \Bra{1} \otimes \Bra{1}) (\Ket{0} \otimes \Ket{1} - i \Ket{1} \otimes \ket{0})
+\right|^2\\
+& = \frac{1}4
+\end{flalign*}
+
+\subsection{}
+Denote the system state after Alice applys unitary gate $U$ by $\Ket{\Psi_{UI}}$. Then, we have system states after Alice applying different gates as follows
+\begin{flalign*}
+\Ket{\Psi_{II}} & = [(\Ket{0}\Bra{0} + \Ket{1}\Bra{1}) \otimes I_B ] \frac{1}{\sqrt{2}} (\Ket{0} \otimes \Ket{1} - i \Ket{1} \otimes \Ket{0})\\
+& =  \frac{1}{\sqrt{2}} (\Ket{0} \otimes \Ket{1} - i \Ket{1} \otimes \Ket{0}) = \Ket{\Psi}\\
+\end{flalign*}
+\begin{flalign*}
+\Ket{\Psi_{XI}} & = [(\Ket{0}\Bra{1} + \Ket{1}\Bra{0}) \otimes I_B ] \frac{1}{\sqrt{2}} (\Ket{0} \otimes \Ket{1} - i \Ket{1} \otimes \Ket{0})\\
+& =  \frac{1}{\sqrt{2}} (\Ket{1} \otimes \Ket{1} - i \Ket{0} \otimes \Ket{0})\\
+\end{flalign*}
+\begin{flalign*}
+\Ket{\Psi_{YI}} & = [(i\Ket{0}\Bra{1} - i\Ket{1}\Bra{0}) \otimes I_B ] \frac{1}{\sqrt{2}} (\Ket{0} \otimes \Ket{1} - i \Ket{1} \otimes \Ket{0})\\
+& =  \frac{1}{\sqrt{2}} (- i \Ket{1} \otimes \Ket{1} + \Ket{0} \otimes \Ket{0})\\
+\end{flalign*}
+\begin{flalign*}
+\Ket{\Psi_{ZI}} & = [(\Ket{0}\Bra{0} - \Ket{1}\Bra{1}) \otimes I_B ] \frac{1}{\sqrt{2}} (\Ket{0} \otimes \Ket{1} - i \Ket{1} \otimes \Ket{0})\\
+& =  \frac{1}{\sqrt{2}} (\Ket{0} \otimes \Ket{1} + i \Ket{1} \otimes \Ket{0})\\
+\end{flalign*}
+Obviously, all the 4 states are normalised:
+\begin{flalign*}
+\|\Ket{\Psi_{II}}\| & = \sqrt{\Braket{\Psi_{II} | \Psi_{II}}} \\
+& = \frac{1}{\sqrt{2}} \sqrt{2}\\
+& = 1
+\end{flalign*}
+\begin{flalign*}
+\|\Ket{\Psi_{XI}}\| & = \sqrt{\Braket{\Psi_{XI} | \Psi_{XI}}} \\
+& = \frac{1}{\sqrt{2}} \sqrt{2}\\
+& = 1
+\end{flalign*}
+\begin{flalign*}
+\|\Ket{\Psi_{YI}}\| & = \sqrt{\Braket{\Psi_{YI} | \Psi_{YI}}} \\
+& = \frac{1}{\sqrt{2}} \sqrt{2}\\
+& = 1
+\end{flalign*}
+\begin{flalign*}
+\|\Ket{\Psi_{ZI}}\| & = \sqrt{\Braket{\Psi_{ZI} | \Psi_{ZI}}} \\
+& = \frac{1}{\sqrt{2}} \sqrt{2}\\
+& = 1
+\end{flalign*}
+Second, check if all states are orthogonal to each other,
+\begin{flalign*}
+\Braket{\Psi_{II} | \Psi_{XI}} & = \frac{1}{2} (\Bra{0} \otimes \Bra{1} + i \Bra{1} \otimes \Bra{0})(\Ket{1} \otimes \Ket{1} - i \Ket{0} \otimes \Ket{0})\\
+& = 0
+\end{flalign*}
+\begin{flalign*}
+\Braket{\Psi_{II} | \Psi_{YI}} & = \frac{1}{2} (\Bra{0} \otimes \Bra{1} + i \Bra{1} \otimes \Bra{0})(-i\Ket{1} \otimes \Ket{1} + \Ket{0} \otimes \Ket{0})\\
+& = 0
+\end{flalign*}
+\begin{flalign*}
+\Braket{\Psi_{II} | \Psi_{ZI}} & = \frac{1}{2} (\Bra{0} \otimes \Bra{1} + i \Bra{1} \otimes \Bra{0})(\Ket{0} \otimes \Ket{1} + i\Ket{1} \otimes \Ket{0})\\
+& = \frac{1}{2} \times (1 - 1)\\
+& = 0
+\end{flalign*}
+\begin{flalign*}
+\Braket{\Psi_{XI} | \Psi_{YI}} & = \frac{1}{2} (\Bra{1} \otimes \Bra{1} + i \Bra{0} \otimes \Bra{0})(-i\Ket{1} \otimes \Ket{1} + \Ket{0} \otimes \Ket{0})\\
+& = \frac{1}{2} \times (-i + i)\\
+& = 0
+\end{flalign*}
+\begin{flalign*}
+\Braket{\Psi_{XI} | \Psi_{ZI}} & = \frac{1}{2} (\Bra{1} \otimes \Bra{1} + i \Bra{0} \otimes \Bra{0})(\Ket{0} \otimes \Ket{1} + i\Ket{1} \otimes \Ket{0})\\
+& = 0
+\end{flalign*}
+\begin{flalign*}
+\Braket{\Psi_{YI} | \Psi_{ZI}} & = \frac{1}{2} (i\Ket{1} \otimes \Ket{1} + \Ket{0} \otimes \Ket{0})(\Ket{0} \otimes \Ket{1} + i\Ket{1} \otimes \Ket{0})\\
+& = 0
+\end{flalign*}
+Therefore, $\{\Ket{\Psi_{II}}, \Ket{\Psi_{XI}}, \Ket{\Psi_{YI}}, \Ket{\Psi_{ZI}}\}$ is an orthonormal basis for $\mathbb{C}^4$.\\
+Then, we could define the following unitary gate
+\begin{flalign*}
+U & = 
+(\Ket{0} \otimes \Ket{0})\Bra{\Psi_{II}} + 
+(\Ket{0} \otimes \Ket{1})\Bra{\Psi_{XI}} + 
+(\Ket{1} \otimes \Ket{0})\Bra{\Psi_{YI}} + 
+(\Ket{1} \otimes \Ket{1})\Bra{\Psi_{ZI}}
+\end{flalign*}
+Bob can put the two qubits through $U$ and mearsure on the ONB $\{\Ket{n} \otimes \Ket{m}\} \text{ for } n, m \in \{0, 1\}$, the following table shows the outcomes and corresponding gate that Alice applied.
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+ \hline
+ Outcome & State & Gate \\ \hline
+ 00 & $\Psi_{II}$ & I \\ \hline
+ 01 & $\Psi_{XI}$ & X \\ \hline
+ 10 & $\Psi_{YI}$ & Y \\ \hline
+ 11 & $\Psi_{ZI}$ & Z \\ \hline
+\end{tabular}
+\end{center}
+
+\pagebreak
+\section{Question 4}
+\subsection{}
+Denote the states as follows
+\begin{flalign*}
+\Ket{\Psi_1} & = \Ket{1} \otimes \Ket{1}\\
+\Ket{\Psi_2} & = \Ket{0} \otimes \frac{\Ket{0} + \Ket{1}}{\sqrt{2}}\\
+\Ket{\Psi_3} & = \Ket{0} \otimes \frac{\Ket{0} - \Ket{1}}{\sqrt{2}}\\
+\Ket{\Psi_4} & = \Ket{2} \otimes \frac{\Ket{1} + \Ket{2}}{\sqrt{2}}\\
+\Ket{\Psi_5} & = \Ket{2} \otimes \frac{\Ket{1} - \Ket{2}}{\sqrt{2}}\\
+\Ket{\Psi_6} & = \frac{\Ket{0} + \Ket{1}}{\sqrt{2}} \otimes \Ket{2}\\
+\Ket{\Psi_7} & = \frac{\Ket{0} - \Ket{1}}{\sqrt{2}} \otimes \Ket{2}\\
+\Ket{\Psi_8} & = \frac{\Ket{1} + \Ket{2}}{\sqrt{2}} \otimes \Ket{0}\\
+\Ket{\Psi_9} & = \frac{\Ket{1} - \Ket{2}}{\sqrt{2}} \otimes \Ket{0}\\
+\end{flalign*}
+First, we can easily find that all states are normalised
+\begin{flalign*}
+\|\Ket{\Psi_1}\| & = 1\\
+\|\Ket{\Psi_2}\| & = \sqrt{\frac{1+1}{2}} = 1\\
+\|\Ket{\Psi_3}\| & = \sqrt{\frac{1+1}{2}} = 1\\
+\|\Ket{\Psi_4}\| & = \sqrt{\frac{1+1}{2}} = 1\\
+\|\Ket{\Psi_5}\| & = \sqrt{\frac{1+1}{2}} = 1\\
+\|\Ket{\Psi_6}\| & = \sqrt{\frac{1+1}{2}} = 1\\
+\|\Ket{\Psi_7}\| & = \sqrt{\frac{1+1}{2}} = 1\\
+\|\Ket{\Psi_8}\| & = \sqrt{\frac{1+1}{2}} = 1\\
+\|\Ket{\Psi_9}\| & = \sqrt{\frac{1+1}{2}} = 1\\
+\end{flalign*}
+For orthogonality, we can build the following table indicating which basis do that state has/have.
+\begin{center}
+\begin{tabular}{ |c|c|c|c|c|c|c|c|c|c| } 
+ \hline
+ Basis & 00 & 01 & 02 & 10 & 11 & 12 & 20 & 21 & 22  \\ \hline
+ $\Ket{\Psi_1}$ &  &  &  &  & \cmark &  &  &  &   \\ \hline
+ $\Ket{\Psi_2}$ & \cmark & \cmark &  &  &  &  &  &  &   \\ \hline
+ $\Ket{\Psi_3}$ & \cmark & \cmark &  &  &  &  &  &  &   \\ \hline
+ $\Ket{\Psi_4}$ &  &  &  &  &  &  &  & \cmark & \cmark  \\ \hline
+ $\Ket{\Psi_5}$ &  &  &  &  &  &  &  & \cmark & \cmark  \\ \hline
+ $\Ket{\Psi_6}$ &  &  & \cmark &  &  & \cmark &  &  &   \\ \hline
+ $\Ket{\Psi_7}$ &  &  & \cmark &  &  & \cmark &  &  &   \\ \hline
+ $\Ket{\Psi_8}$ &  &  &  & \cmark &  &  & \cmark &  &   \\ \hline
+ $\Ket{\Psi_9}$ &  &  &  & \cmark &  &  & \cmark &  &   \\ \hline
+\end{tabular}
+\end{center}
+Then, states with no overlapping basis must be orthogonal. For those overlap ones, we could check by doing some maths
+\begin{flalign*}
+\Braket{\Psi_2|\Psi_3} & = \frac{1}{\sqrt{2}} (1 - 1) = 0\\
+\Braket{\Psi_4|\Psi_5} & = \frac{1}{\sqrt{2}} (1 - 1) = 0\\
+\Braket{\Psi_6|\Psi_7} & = \frac{1}{\sqrt{2}} (1 - 1) = 0\\
+\Braket{\Psi_8|\Psi_9} & = \frac{1}{\sqrt{2}} (1 - 1) = 0\\
+\end{flalign*}
+So, we have the set $\{ \Psi_{n} \} \text{ for } n \in [1, ..., 9]$ is an ONB.\\
+Then, they can directly measure two qutrits in that ONB.\\
+Alternatively, we could define the following unity gate
+\begin{flalign*}
+U = &
+(\Ket{0} \otimes \Ket{0})\Bra{\Psi_{1}} + 
+(\Ket{0} \otimes \Ket{1})\Bra{\Psi_{2}} + 
+(\Ket{0} \otimes \Ket{2})\Bra{\Psi_{3}} + \\
+& (\Ket{1} \otimes \Ket{0})\Bra{\Psi_{4}} + 
+(\Ket{1} \otimes \Ket{1})\Bra{\Psi_{5}} + 
+(\Ket{1} \otimes \Ket{2})\Bra{\Psi_{6}} + \\
+& (\Ket{2} \otimes \Ket{0})\Bra{\Psi_{7}} + 
+(\Ket{2} \otimes \Ket{1})\Bra{\Psi_{8}} + 
+(\Ket{2} \otimes \Ket{2})\Bra{\Psi_{9}}
+\end{flalign*}
+\pagebreak\\
+Putting the two qutrits through this gate, and measure both qutrits in the $\{ \Ket{0}, \Ket{1} \}$. The combined outcome indicate the state of the system before applying the gate as below. 
+\begin{center}
+\begin{tabular}{ |c|c| } 
+ \hline
+ Combined Outcome & State \\ \hline
+ 00 & $\Psi_{1}$ \\ \hline
+ 01 & $\Psi_{2}$ \\ \hline
+ 02 & $\Psi_{3}$ \\ \hline
+ 10 & $\Psi_{4}$ \\ \hline
+ 11 & $\Psi_{5}$ \\ \hline
+ 12 & $\Psi_{6}$ \\ \hline
+ 20 & $\Psi_{7}$ \\ \hline
+ 21 & $\Psi_{8}$ \\ \hline
+ 22 & $\Psi_{9}$ \\ \hline
+\end{tabular}
+\end{center}
+Therefore, they can discover the state of the two qutrits without any error if the two qutrits are brought together.
+
+\pagebreak
+\subsection{}
+For identifying the state without bringing the qutrits togehter, Alice and Bob can only do measurements on their own qutrits. Let say Alice measures in the ONB $\{\Ket{\alpha_n}\}_{n\in\{0, 1, 2\}} \in \mathbb{C}^3$, and Bob measures in the ONB $\{\Ket{\beta_m}\}_{m\in\{0, 1, 2\}} \in \mathbb{C}^3$. Then, we have the probabilities given by
+\[
+	p(n,m,k) = \left| (\Bra{\alpha_n} \otimes \Bra{\beta_m}) \Ket{\Psi_k} \right|^2 = \left| \Braket{M_{nm}|\Psi_k} \right|^2
+\]
+Alice and Bob could make a guess using the two outcomes, namely $n, m$. Then, the guess could be any function $f(n,m) = k_\text{guess}$. For the guessing to be perfect, the probability of the guessing must be 1, namely
+\begin{flalign}
+p(n,m,k) = 1  & \qquad \forall f(n,m) = k \label{eq:prob1}
+\end{flalign}
+As there are 9 possible states and 9 combinations of the two ONB, the function $f$ must be bijective. Then, we could rewrite Eq. \ref{eq:prob1} as
+\begin{flalign}
+p(f^{-1}(k), k) = \left| \Braket{M_{f^{-1}(k)}|\Psi_k} \right| = 1                             \label{eq:prob2}
+\end{flalign}
+Both $\Ket{M}$ and $\Ket{\Psi}$ are in unit length. By the Cauchy-Schwarz inequality, they must be proportional, i.e.
+\[
+	e^{i\phi} \Ket{M_{f^{-1}(k)}} = \Ket{\Psi_k} = \Ket{a_k} \otimes \Ket{b_k}
+\]
+for some $\phi \in \mathbb{R}$ and $\Ket{\Psi_k} = \Ket{a_k} \otimes \Ket{b_k}$.\\
+
+Also, from Eq. \ref{eq:prob2}, we have $\forall k$,
+\begin{flalign}
+\left| \Braket{\alpha_{n(f^{-1}(k))}|a_k} \right|  \left| \Braket{\beta_{m(f^{-1}(k))}|b_k} \right|  = 1                             \label{eq:prob3}
+\end{flalign}
+By Cauchy-Schwarz inequality, we have
+\[
+\begin{dcases}
+	\left| \Braket{\alpha_{n(f^{-1}(k))}|a_k} \right| \leq  \left\| \Ket{\alpha_{n(f^{-1}(k))}}\right\| \|\Ket{a_k}\| \\
+	\left| \Braket{\beta_{m(f^{-1}(k))}|b_k}  \right| \leq  \left\| \Ket{\beta_{m(f^{-1}(k))}}\right\| \|\Ket{b_k}\| \\
+\end{dcases}
+\]
+All $\Ket{\alpha_n}, \Ket{\beta_m}, \Ket{a_k}, \Ket{b_k} \forall n, m, k$ are normalised, we have
+\[
+\begin{dcases}
+	\left| \Braket{\alpha_{n(f^{-1}(k))}|a_k} \right| \leq  \left\| \Ket{\alpha_{n(f^{-1}(k))}}\right\| \|\Ket{a_k}\|  = 1\\
+	\left| \Braket{\beta_{m(f^{-1}(k))}|b_k}  \right| \leq  \left\| \Ket{\beta_{m(f^{-1}(k))}}\right\| \|\Ket{b_k}\|  = 1\\
+\end{dcases}
+\]
+Therefore, together with Eq. \ref{eq:prob3}, we have
+\[
+\begin{dcases}
+	\left| \Braket{\alpha_{n(f^{-1}(k))}|a_k} \right|  = 1\\
+	\left| \Braket{\beta_{m(f^{-1}(k))}|b_k}  \right|  = 1\\
+\end{dcases}
+\]
+\pagebreak
+
+Again, by Cauchy-Schwarz inequality, we have $\forall k$,
+\[
+\begin{dcases}
+	\Ket{\alpha_{n(f^{-1}(k))}} = e^{i\phi_{a_k}} \Ket{a_k}\\
+	\Ket{\beta_{m(f^{-1}(k))}} = e^{i\phi_{b_k}} \Ket{b_k}\\
+\end{dcases}
+\]
+for some $\phi_{a_k}, \phi_{b_k} \in \mathbb{R}$.
+
+Then, as $\{\Ket{\alpha_n}\}$ is an ONB, for every $k$ and $k'$, we have
+\begin{flalign*}
+|\Braket{a_k | a_{k'}}| & = \left| \Braket{\alpha_{n(f^{-1}(k))}| \alpha_{n(f^{-1}(k'))}}\right| \\
+& = \delta_{n(f^{-1}(k)), n(f^{-1}(k'))}\\
+\end{flalign*}
+Therefore, $|\Braket{a_k | a_{k'}}| $ be either be 1 or 0. This creates a contradiction. For $k=1, k' = 6$, we have
+\begin{flalign*}
+|\Braket{a_1 | a_6}| & = \frac{1}{\sqrt{2}}|\Braket{1|0} + \Braket{1|1}| \\
+& = \frac{1}{\sqrt{2}}
+\end{flalign*}
+Hence, the assumption that the guessing is perfect is incorrect, Alice and Bob cannot discover the state of the two qutrits without error.
+
+
+\iffalse
+Then, for every $k$ and $k'$, we have
+\begin{flalign}
+|\Braket{a_k | a_{k'}}| & = \left| \Braket{a_k | a_{k'}} \Braket{b_k | b_k} \Braket{b_{k'} | b_{k'}} \right| \notag \\
+& = \left| (\Bra{a_k }\otimes \Bra{ b_k } \otimes \Bra{b_{k'}}) (\Ket{a_{k'} }\otimes \Ket{ b_{k'} } \otimes \Ket{b_{k}}) \right|  \notag \\
+& = \left| (e^{-i\phi} \Bra{a_k }\otimes \Bra{ b_k } \otimes \Bra{b_{k'}}) (e^{i\phi} \Ket{a_{k'} }\otimes \Ket{ b_{k'} } \otimes \Ket{b_{k}}) \right| \notag \\
+& = \left| \Braket{M_{f^{-1}(k)} | M_{f^{-1}(k')}} \Braket{b_{k'} | b_{k}} \right| \notag \\
+& = \delta_{f^{-1}(k), f^{-1}(k')} \left|  \Braket{b_{k'} | b_{k}} \right| \label{eq:contra}
+\end{flalign}
+This creates a contradiction. Consider $k = 2, k' = 3$, we have
+\begin{flalign*}
+ \left|  \Braket{b_3 | b_2} \right|  &= \frac{1}{2} \left|  (\Bra{0} - \Bra{1})(\Ket{0} + \Ket{1}) \right|\\
+& = 0
+\end{flalign*}
+However,
+\begin{flalign*}
+ \left|  \Braket{a_2 | a_3} \right|  &=  \left|  \Braket{0|0} \right|\\
+& = 1
+\end{flalign*}
+This shows that Eq. \ref{eq:contra} is incorrect. Therefore, the assumption that the guessing is perfect is incorrect.
+
+
+\subsection{}
+For identifying the state without bringing the qutrits togehter, the product measurement $M$ must be in the form
+\[
+	\Bra{M} = \Bra{a} \otimes \Bra{b}
+\] 
+where $a$ and $b$ are measuring basis.\\
+Then, for every combination $M$ of the measuring basis set,
+\[
+\left\{
+\begin{array} {llcl}
+|\Braket{M | \Psi_n}|^2 & = 1 & \text{for} & n \in \{1, ... ,9\}\\
+|\Braket{M | \Psi_m}|^2 & = 0 & \text{for} & n \neq m\\
+\end{array}
+\right.
+\]
+and such relation between the states and measurement basis combinations should be bijective.\\
+Measuring the states, we have the probabilities
+\begin{flalign*}
+p_1 & = |\Braket{a|1}\Braket{b|1}|^2 \\
+p_2 & = \frac{1}2 |\Braket{a|0}(\Braket{b|0} + \Braket{b|1})|^2 \\
+p_3 & = \frac{1}2 |\Braket{a|0}(\Braket{b|0} - \Braket{b|1})|^2 \\
+p_4 & = \frac{1}2 |\Braket{a|2}(\Braket{b|1} + \Braket{b|2})|^2 \\
+p_5 & = \frac{1}2 |\Braket{a|2}(\Braket{b|1} - \Braket{b|2})|^2 \\
+p_6 & = \frac{1}2 |(\Braket{a|0} + \Braket{a|1})\Braket{b|2}|^2 \\
+p_7 & = \frac{1}2 |(\Braket{a|0} - \Braket{a|1})\Braket{b|2}|^2 \\
+p_8 & = \frac{1}2 |(\Braket{a|1} + \Braket{a|2})\Braket{b|0}|^2 \\
+p_9 & = \frac{1}2 |(\Braket{a|1} - \Braket{a|2})\Braket{b|0}|^2
+\end{flalign*}
+Denote $M_n$ be the measurement basis such that
+\[
+	M_n = \Bra{a_n} \otimes {\Bra{b_n}}
+\]
+and
+\[
+	|M_n \Ket{\Psi_m}|^2 =  \delta_{n,m}
+\]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=====================================================\\
+Suppose we have such measurement, and we have
+\begin{flalign}
+p_1 & = |\Braket{a|1}\Braket{b|1}|^2 = 1
+\end{flalign}
+Then, we will also have
+\begin{flalign}
+p_2 & = \frac{1}2 |\Braket{a|0}(\Braket{b|0} + \Braket{b|1})|^2 = 0\\
+p_3 & = \frac{1}2 |\Braket{a|0}(\Braket{b|0} - \Braket{b|1})|^2 = 0\\
+p_4 & = \frac{1}2 |\Braket{a|2}(\Braket{b|1} + \Braket{b|2})|^2 = 0\\
+p_5 & = \frac{1}2 |\Braket{a|2}(\Braket{b|1} - \Braket{b|2})|^2 = 0\\
+p_6 & = \frac{1}2 |(\Braket{a|0} + \Braket{a|1})\Braket{b|2}|^2 = 0\\
+p_7 & = \frac{1}2 |(\Braket{a|0} - \Braket{a|1})\Braket{b|2}|^2 = 0\\
+p_8 & = \frac{1}2 |(\Braket{a|1} + \Braket{a|2})\Braket{b|0}|^2 = 0\\
+p_9 & = \frac{1}2 |(\Braket{a|1} - \Braket{a|2})\Braket{b|0}|^2 = 0
+\end{flalign}
+From (2), we have
+\begin{align*}
+\Braket{a|0} = 0\\
+\intertext{or}
+ \Braket{b|0} = \Braket{b|1} = 0
+\end{align*}
+However, from (1), we know that $\Braket{b|1} \neq 0$, so we have
+\begin{align}
+\Braket{a|0} = 0
+\end{align}
+\fi
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
